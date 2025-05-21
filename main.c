@@ -55,10 +55,10 @@ void LoadConfig() {
 void ActivateLanguage(const char* layoutStr) {
     HWND hForegroundWnd = GetForegroundWindow();
     if (!hForegroundWnd) return;
-
-    HKL hkl = LoadKeyboardLayoutA(layoutStr, KLF_ACTIVATE);
+    
+	HKL hkl = LoadKeyboardLayoutA(layoutStr, KLF_ACTIVATE);
     if (hkl) {
-        PostMessage(hForegroundWnd, WM_INPUTLANGCHANGEREQUEST, 0, (LPARAM)hkl);
+        PostMessage(HWND_BROADCAST, WM_INPUTLANGCHANGEREQUEST, 0, (LPARAM)hkl);
     }
 }
 
